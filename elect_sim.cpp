@@ -31,10 +31,6 @@ int main(int argc, char **argv){
 	vector <double> sys_gain;
 	vector <double> sys_phas;
 	ReadElectronicsGain("./data/ARA_Electronics_TotalGain_TwoFilters.txt",sys_freq,sys_gain,sys_phas);
-
-	for(int i=0; i<sys_freq.size();i++){
-		//printf("Sys response frequency and gain and phase: [%.2f , %.2f, %.2f]\n",sys_freq[i],sys_gain[i],sys_phas[i]);
-	}
 	
 	for(int freq_bin=0; freq_bin<NFOUR/2; freq_bin++){ //loop over all frequency bins
 		
@@ -134,15 +130,15 @@ void ReadElectronicsGain(string filename, vector<double> &frequency, vector<doub
 			//so parse that out
 
 			frequency.push_back( atof( line.substr(0, line.find_first_of(",")).c_str() ) );
-			cout<<"freq : "<<frequency[N]<<"\t";
+			//cout<<"freq : "<<frequency[N]<<"\t";
 
 			line2 = line.substr( line.find_first_of(",")+1);
 			gain.push_back( atof( line2.substr(0, line2.find_first_of(",")).c_str() ) );
-			cout<<"gain : "<<gain[N]<<"\t";
+			//cout<<"gain : "<<gain[N]<<"\t";
 
 			line3 = line2.substr( line2.find_first_of(",")+1);
 			phase.push_back( atof( line3.substr(0).c_str() ) );
-			cout<<"phase : "<<phase[N]<<" N : "<<N<<endl;
+			//cout<<"phase : "<<phase[N]<<" N : "<<N<<endl;
 		}
 		file.close();
 	}
